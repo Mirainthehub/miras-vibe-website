@@ -4,7 +4,7 @@ A futuristic landing page for Mira's Vibe, an AI-driven marketing automation pla
 
 ## 🚀 Live Demo
 
-[View Live Website](https://your-username.github.io/miras-vibe-website/)
+[View Live Website](https://mirainthehub.github.io/miras-vibe-website/)
 
 ## 🌟 Features
 
@@ -92,7 +92,7 @@ miras-vibe-website/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/miras-vibe-website.git
+   git clone https://github.com/mirainthehub/miras-vibe-website.git
    cd miras-vibe-website
    ```
 
@@ -169,7 +169,7 @@ Update CSS variables in `style.css`:
 1. Push to GitHub repository
 2. Enable GitHub Pages in repository settings
 3. Select source branch (usually `main`)
-4. Access via `https://username.github.io/repository-name/`
+4. Access via `https://mirainthehub.github.io/miras-vibe-website/`
 
 ### Netlify
 1. Connect GitHub repository
@@ -195,9 +195,9 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## 🔗 Links
 
-- **Live Demo**: [https://your-username.github.io/miras-vibe-website/](https://your-username.github.io/miras-vibe-website/)
-- **Repository**: [https://github.com/your-username/miras-vibe-website](https://github.com/your-username/miras-vibe-website)
-- **Issues**: [https://github.com/your-username/miras-vibe-website/issues](https://github.com/your-username/miras-vibe-website/issues)
+- **Live Demo**: [https://mirainthehub.github.io/miras-vibe-website/](https://mirainthehub.github.io/miras-vibe-website/)
+- **Repository**: [https://github.com/mirainthehub/miras-vibe-website](https://github.com/mirainthehub/miras-vibe-website)
+- **Issues**: [https://github.com/mirainthehub/miras-vibe-website/issues](https://github.com/mirainthehub/miras-vibe-website/issues)
 
 ## 📞 Contact
 
