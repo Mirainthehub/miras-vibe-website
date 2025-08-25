@@ -7,6 +7,110 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Unified utility styles that match the existing dark theme */
+        :root{
+          --radius: 20px;
+          --shadow: 0 25px 50px rgba(147, 51, 234, 0.3);
+          --card-bg: rgba(20, 20, 30, 0.9);
+          --text: #ffffff;
+          --muted: #d1d5db;
+          --brand: #9333ea;
+        }
+
+        .unified-section-title{ 
+          font-size: 3rem;
+          font-weight: 700;
+          text-align: center;
+          margin-bottom: 4rem;
+          background: linear-gradient(135deg, #9333ea, #c084fc);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .unified-section-sub{ 
+          color: var(--muted);
+          text-align: center;
+          font-size: 1.2rem;
+          margin-bottom: 3rem;
+        }
+
+        .unified-grid{
+          display: grid;
+          gap: 3rem;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .unified-card{
+          position: relative;
+          background: var(--card-bg);
+          border: 1px solid rgba(147, 51, 234, 0.3);
+          border-radius: var(--radius);
+          padding: 3rem 2rem;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          overflow: hidden;
+        }
+
+        .unified-card:hover{ 
+          transform: translateY(-10px); 
+          box-shadow: var(--shadow);
+        }
+
+        .unified-card .product-icon {
+          font-size: 3rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .unified-card h3{ 
+          font-size: 1.8rem;
+          font-weight: 700;
+          margin-bottom: 1.5rem;
+          color: var(--brand);
+        }
+
+        .unified-card p{ 
+          margin-bottom: 1rem;
+          color: var(--text);
+          line-height: 1.6;
+        }
+
+        .unified-btn{
+          display: inline-block;
+          padding: 0.8rem 1.5rem;
+          border-radius: 25px;
+          background: transparent;
+          color: var(--brand);
+          text-decoration: none;
+          font-weight: 600;
+          border: 2px solid var(--brand);
+          transition: all 0.3s ease;
+          position: relative;
+          z-index: 2;
+        }
+
+        .unified-btn:hover{
+          background: var(--brand);
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 10px 20px rgba(147, 51, 234, 0.3);
+        }
+
+        .unified-card .product-glow {
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .unified-card:hover .product-glow {
+          opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -99,8 +203,11 @@
                         <li>快速识别行业趋势</li>
                     </ul>
                     <div style="margin-top: 2rem; text-align: center;">
-                        <a href="ai-market-research.html" class="product-link">
+                        <a href="ai-market-research.html" class="product-link" style="margin-right: 1rem;">
                             了解更多 <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="market-research.html" class="product-link">
+                            进入模块 <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
                     <div class="product-glow"></div>
@@ -115,8 +222,11 @@
                         <li>24/7 执行，不疲劳，不跳票</li>
                     </ul>
                     <div style="margin-top: 2rem; text-align: center;">
-                        <a href="ai-agent-sales.html" class="product-link">
+                        <a href="ai-agent-sales.html" class="product-link" style="margin-right: 1rem;">
                             了解更多 <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="sales-teams.html" class="product-link">
+                            进入模块 <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
                     <div class="product-glow"></div>
@@ -131,8 +241,11 @@
                         <li>跨平台整合（Google Ads, LinkedIn, TikTok）</li>
                     </ul>
                     <div style="margin-top: 2rem; text-align: center;">
-                        <a href="ai-campaign-automation.html" class="product-link">
+                        <a href="ai-campaign-automation.html" class="product-link" style="margin-right: 1rem;">
                             了解更多 <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="campaign-automation.html" class="product-link">
+                            进入模块 <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
                     <div class="product-glow"></div>
@@ -163,45 +276,41 @@
     </section>
 
     <!-- AI Product Modules Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">AI 产品模块</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Market Research Module -->
-                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                    <div class="text-4xl mb-4">🔍</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">AI 市场研究</h3>
-                    <p class="text-gray-600 mb-2">自动生成专业市场调研报告</p>
-                    <p class="text-gray-600 mb-6">竞品分析、市场规模、消费者洞察一键获取</p>
-                    <a href="https://mirainthehub.github.io/miras-vibe-website/market-research.html" 
-                       class="inline-flex items-center bg-violet-600 text-white px-4 py-2 rounded-lg hover:bg-violet-700 transition-colors font-medium">
-                        进入模块 →
-                    </a>
-                </div>
+    <section class="products-section" id="ai-modules">
+        <div class="container">
+            <h2 class="unified-section-title">AI 产品模块</h2>
+            <p class="unified-section-sub">与核心产品同款卡片与按钮样式，统一视觉与交互</p>
 
-                <!-- Sales Teams Module -->
-                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                    <div class="text-4xl mb-4">🤖</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">AI 销售团队</h3>
-                    <p class="text-gray-600 mb-2">虚拟 SDR + AE 团队自动化销售</p>
-                    <p class="text-gray-600 mb-6">24/7 客户开发、邮件外联、会议预约</p>
-                    <a href="https://mirainthehub.github.io/miras-vibe-website/sales-teams.html" 
-                       class="inline-flex items-center bg-violet-600 text-white px-4 py-2 rounded-lg hover:bg-violet-700 transition-colors font-medium">
-                        进入模块 →
-                    </a>
-                </div>
+            <div class="unified-grid">
+                <article class="unified-card">
+                    <div class="product-icon">🔍</div>
+                    <h3>AI 市场研究</h3>
+                    <p>自动生成专业市场调研报告；竞品分析、市场规模、消费者洞察一键获取。</p>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a class="unified-btn" href="market-research.html">进入模块 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="product-glow"></div>
+                </article>
 
-                <!-- Campaign Automation Module -->
-                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900">AI 活动自动化</h3>
-                    <p class="text-gray-600 mb-2">智能生成和执行广告活动</p>
-                    <p class="text-gray-600 mb-6">多平台投放、文案优化、ROI 实时监控</p>
-                    <a href="https://mirainthehub.github.io/miras-vibe-website/campaign-automation.html" 
-                       class="inline-flex items-center bg-violet-600 text-white px-4 py-2 rounded-lg hover:bg-violet-700 transition-colors font-medium">
-                        进入模块 →
-                    </a>
-                </div>
+                <article class="unified-card">
+                    <div class="product-icon">🤖</div>
+                    <h3>AI 销售团队</h3>
+                    <p>虚拟 SDR + AE 团队自动化销售；24/7 客户开发、外联与预约。</p>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a class="unified-btn" href="sales-teams.html">进入模块 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="product-glow"></div>
+                </article>
+
+                <article class="unified-card">
+                    <div class="product-icon">🎯</div>
+                    <h3>AI 活动自动化</h3>
+                    <p>智能生成与执行广告活动；跨平台投放、文案优化、ROI 实时监控。</p>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a class="unified-btn" href="campaign-automation.html">进入模块 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="product-glow"></div>
+                </article>
             </div>
         </div>
     </section>
