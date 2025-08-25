@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Sales Teams - Mira's Vibe 🟣</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .product-hero {
+            padding: 12rem 0 8rem;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(192, 132, 252, 0.1) 100%);
+        }
+        
+        .product-nav {
+            position: fixed;
+            top: 80px;
+            left: 2rem;
+            background: rgba(20, 20, 30, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 15px;
+            padding: 1rem;
+            z-index: 100;
+        }
+        
+        .product-nav a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .product-nav a:hover,
+        .product-nav a.active {
+            color: #9333ea;
+        }
+        
+        .agent-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .agent-card {
+            background: rgba(20, 20, 30, 0.8);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .agent-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(147, 51, 234, 0.6);
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.2);
+        }
+        
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .agent-card:hover::before {
+            opacity: 1;
+        }
+        
+        .agent-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .agent-title {
+            color: #9333ea;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .agent-description {
+            color: #d1d5db;
+            margin-bottom: 1.5rem;
+        }
+        
+        .agent-features {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .agent-features li {
+            padding: 0.5rem 0;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        .agent-features li:before {
+            content: '✓';
+            color: #22c55e;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .workflow-step {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(147, 51, 234, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid #9333ea;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .pricing-card {
+            background: rgba(20, 20, 30, 0.8);
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            border-color: rgba(147, 51, 234, 0.8);
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.featured {
+            border-color: #9333ea;
+            background: rgba(147, 51, 234, 0.1);
+        }
+        
+        .pricing-card.featured::before {
+            content: '推荐';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #9333ea;
+            margin: 1rem 0;
+        }
+        
+        .price-unit {
+            font-size: 1rem;
+            color: #9ca3af;
+            font-weight: 400;
+        }
+        
+        .use-case {
+            background: rgba(147, 51, 234, 0.05);
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .use-case-title {
+            color: #9333ea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .product-nav {
+                display: none;
+            }
+            
+            .workflow-step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .agent-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index-cn.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="logo-text">Mira's Vibe</span>
+                    <span class="logo-emoji">🟣</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index-cn.html#features">产品功能</a>
+                <a href="index-cn.html#demo">演示</a>
+                <a href="index-cn.html#about">关于</a>
+                <div class="language-selector">
+                    <a href="ai-agent-sales-en.html" class="lang-link">EN</a>
+                    <a href="ai-agent-sales.html" class="lang-link active">中文</a>
+                </div>
+                <button class="nav-cta">加入 Beta</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Navigation -->
+    <nav class="product-nav">
+        <a href="#overview">产品概览</a>
+        <a href="#agents">AI 销售团队</a>
+        <a href="#workflow">工作流程</a>
+        <a href="#use-cases">应用场景</a>
+        <a href="#pricing">定价方案</a>
+        <a href="#cta">立即体验</a>
+    </nav>
+
+    <!-- Product Hero -->
+    <section class="product-hero" id="overview">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <div class="hero-tagline">🤖 Mira's Vibe 产品二</div>
+                <h1 class="hero-title">
+                    <span class="gradient-text">AI Agent Sales Teams</span>
+                </h1>
+                <p class="hero-subtitle" style="font-size: 1.4rem;">
+                    <strong>虚拟销售团队（SDR + AE），自动跑客户</strong><br>
+                    24/7 不间断工作的 AI 销售团队，从挖掘到成交全程自动化
+                </p>
+                <div class="hero-cta">
+                    <button class="cta-primary">
+                        <i class="fas fa-rocket"></i>
+                        免费试用
+                    </button>
+                    <button class="cta-secondary">
+                        <i class="fas fa-play"></i>
+                        观看演示
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents -->
+    <section class="features-section" id="agents">
+        <div class="container">
+            <h2 class="section-title">三大 AI 销售 Agent</h2>
+            
+            <div class="agent-showcase">
+                <div class="agent-card">
+                    <span class="agent-icon">🕵️</span>
+                    <h3 class="agent-title">Scout Agent</h3>
+                    <p class="agent-description">专业客户挖掘专家</p>
+                    <ul class="agent-features">
+                        <li>LinkedIn 潜在客户搜索</li>
+                        <li>企业数据库挖掘</li>
+                        <li>客户画像匹配</li>
+                        <li>联系方式收集</li>
+                        <li>线索质量评分</li>
+                    </ul>
+                </div>
+                
+                <div class="agent-card">
+                    <span class="agent-icon">✉️</span>
+                    <h3 class="agent-title">Outreach Agent</h3>
+                    <p class="agent-description">个性化沟通专家</p>
+                    <ul class="agent-features">
+                        <li>个性化邮件生成</li>
+                        <li>社交媒体 DM 脚本</li>
+                        <li>多轮跟进策略</li>
+                        <li>回复率优化</li>
+                        <li>A/B 测试文案</li>
+                    </ul>
+                </div>
+                
+                <div class="agent-card">
+                    <span class="agent-icon">🤝</span>
+                    <h3 class="agent-title">Closer Agent</h3>
+                    <p class="agent-description">成交转化专家</p>
+                    <ul class="agent-features">
+                        <li>常见问题自动回复</li>
+                        <li>初步报价生成</li>
+                        <li>会议预约安排</li>
+                        <li>异议处理话术</li>
+                        <li>成交概率预测</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="value-section" id="workflow">
+        <div class="container">
+            <h2 class="section-title">工作流程</h2>
+            
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div>
+                    <h3 style="color: #9333ea; margin-bottom: 0.5rem;">上传目标客户</h3>
+                    <p style="color: #d1d5db;">上传目标客户名单或定义理想客户画像（ICP）到 CRM 系统</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div>
+                    <h3 style="color: #9333ea; margin-bottom: 0.5rem;">AI 团队自动执行</h3>
+                    <p style="color: #d1d5db;">三个 Agent 协作完成客户挖掘、个性化外联和跟进</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div>
+                    <h3 style="color: #9333ea; margin-bottom: 0.5rem;">会议预约成功</h3>
+                    <p style="color: #d1d5db;">AI 完成初步筛选后，人类销售员在关键时刻接手（closing call）</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div>
+                    <h3 style="color: #9333ea; margin-bottom: 0.5rem;">全程 CRM 记录</h3>
+                    <p style="color: #d1d5db;">整个销售流程数据自动同步到 Hubspot、Salesforce 等 CRM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="features-section" id="use-cases">
+        <div class="container">
+            <h2 class="section-title">应用场景</h2>
+            
+            <div class="use-case">
+                <div class="use-case-title">
+                    <i class="fas fa-laptop-code"></i>
+                    SaaS 公司拓展新客户
+                </div>
+                <p style="color: #d1d5db;">自动化 B2B SaaS 获客流程，从线索挖掘到试用转化</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-title">
+                    <i class="fas fa-building"></i>
+                    B2B 企业 Cold Outreach
+                </div>
+                <p style="color: #d1d5db;">大规模个性化外联，提高 cold email 回复率和会议预约率</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-title">
+                    <i class="fas fa-shopping-cart"></i>
+                    电商自动化客户回复
+                </div>
+                <p style="color: #d1d5db;">7x24 小时客户咨询处理，从售前到售后全流程覆盖</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="why-section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">定价方案</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                <div class="pricing-card">
+                    <h3 style="color: #9333ea;">按成果付费</h3>
+                    <div class="price">$50 <span class="price-unit">/ 有效会议</span></div>
+                    <ul style="list-style: none; padding: 0; margin: 2rem 0;">
+                        <li style="padding: 0.5rem 0;">✅ 只为有效会议付费</li>
+                        <li style="padding: 0.5rem 0;">✅ Scout + Outreach Agent</li>
+                        <li style="padding: 0.5rem 0;">✅ 基础 CRM 集成</li>
+                        <li style="padding: 0.5rem 0;">✅ 邮件模板优化</li>
+                        <li style="padding: 0.5rem 0;">✅ 月报告</li>
+                    </ul>
+                    <button class="cta-secondary" style="width: 100%;">选择此方案</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3 style="color: #9333ea;">SaaS 订阅</h3>
+                    <div class="price">$999 <span class="price-unit">/ 月</span></div>
+                    <ul style="list-style: none; padding: 0; margin: 2rem 0;">
+                        <li style="padding: 0.5rem 0;">✅ 全套 3 个 Agent</li>
+                        <li style="padding: 0.5rem 0;">✅ 高级 CRM 集成</li>
+                        <li style="padding: 0.5rem 0;">✅ 无限制线索挖掘</li>
+                        <li style="padding: 0.5rem 0;">✅ A/B 测试优化</li>
+                        <li style="padding: 0.5rem 0;">✅ 实时分析面板</li>
+                        <li style="padding: 0.5rem 0;">✅ 专属客户成功经理</li>
+                    </ul>
+                    <button class="cta-primary" style="width: 100%;">立即订阅</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">CRM 集成</h2>
+            <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; align-items: center;">
+                <div style="text-align: center;">
+                    <i class="fab fa-hubspot" style="font-size: 3rem; color: #ff7a59; margin-bottom: 1rem;"></i>
+                    <p style="color: #d1d5db;">HubSpot</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-cloud" style="font-size: 3rem; color: #00a1c9; margin-bottom: 1rem;"></i>
+                    <p style="color: #d1d5db;">Salesforce</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-chart-line" style="font-size: 3rem; color: #9333ea; margin-bottom: 1rem;"></i>
+                    <p style="color: #d1d5db;">Pipedrive</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fab fa-microsoft" style="font-size: 3rem; color: #0078d4; margin-bottom: 1rem;"></i>
+                    <p style="color: #d1d5db;">Dynamics 365</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="final-cta" id="cta">
+        <div class="container">
+            <h2 class="cta-title">开启 AI 销售团队时代</h2>
+            <p class="cta-subtitle">让 AI 帮您 24/7 挖掘客户，专注于成交关键时刻</p>
+            <div class="email-signup">
+                <input type="email" placeholder="输入您的邮箱，预约演示" class="email-input">
+                <button class="signup-btn">
+                    <i class="fas fa-rocket"></i>
+                    预约演示
+                </button>
+            </div>
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="ai-market-research.html" class="social-link" style="margin: 0 1rem;">
+                    <i class="fas fa-arrow-left"></i>
+                    查看 Market Research
+                </a>
+                <a href="ai-campaign-automation.html" class="social-link" style="margin: 0 1rem;">
+                    <i class="fas fa-arrow-right"></i>
+                    查看 Campaign Automation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>AI Agent Sales Teams</h4>
+                    <p>虚拟销售团队，自动化客户开发</p>
+                    <a href="index-cn.html">← 返回首页</a>
+                </div>
+                <div class="footer-section">
+                    <h4>其他产品</h4>
+                    <a href="ai-market-research.html">AI Market Research</a>
+                    <a href="ai-campaign-automation.html">AI Campaign Automation</a>
+                </div>
+                <div class="footer-section">
+                    <h4>集成支持</h4>
+                    <a href="#">HubSpot 集成</a>
+                    <a href="#">Salesforce 集成</a>
+                    <a href="#">API 文档</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Same navigation script as market research page
+        document.querySelectorAll('.product-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    document.querySelectorAll('.product-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        window.addEventListener('scroll', () => {
+            const sections = ['overview', 'agents', 'workflow', 'use-cases', 'pricing', 'cta'];
+            const scrollPosition = window.scrollY + 200;
+            
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                const navLink = document.querySelector(`.product-nav a[href="#${sectionId}"]`);
+                
+                if (section && navLink) {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        document.querySelectorAll('.product-nav a').forEach(a => a.classList.remove('active'));
+                        navLink.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

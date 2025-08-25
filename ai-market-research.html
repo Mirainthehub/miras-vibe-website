@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Market Research - Mira's Vibe 🟣</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .product-hero {
+            padding: 12rem 0 8rem;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(192, 132, 252, 0.1) 100%);
+        }
+        
+        .product-nav {
+            position: fixed;
+            top: 80px;
+            left: 2rem;
+            background: rgba(20, 20, 30, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 15px;
+            padding: 1rem;
+            z-index: 100;
+        }
+        
+        .product-nav a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .product-nav a:hover,
+        .product-nav a.active {
+            color: #9333ea;
+        }
+        
+        .feature-showcase {
+            background: rgba(20, 20, 30, 0.5);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+        
+        .workflow-step {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(147, 51, 234, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid #9333ea;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .pricing-card {
+            background: rgba(20, 20, 30, 0.8);
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            border-color: rgba(147, 51, 234, 0.8);
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.featured {
+            border-color: #9333ea;
+            background: rgba(147, 51, 234, 0.1);
+        }
+        
+        .pricing-card.featured::before {
+            content: '推荐';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #9333ea;
+            margin: 1rem 0;
+        }
+        
+        .price-unit {
+            font-size: 1rem;
+            color: #9ca3af;
+            font-weight: 400;
+        }
+        
+        .use-case {
+            background: rgba(147, 51, 234, 0.05);
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .use-case-title {
+            color: #9333ea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .product-nav {
+                display: none;
+            }
+            
+            .workflow-step {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index-cn.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="logo-text">Mira's Vibe</span>
+                    <span class="logo-emoji">🟣</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index-cn.html#features">产品功能</a>
+                <a href="index-cn.html#demo">演示</a>
+                <a href="index-cn.html#about">关于</a>
+                <div class="language-selector">
+                    <a href="ai-market-research-en.html" class="lang-link">EN</a>
+                    <a href="ai-market-research.html" class="lang-link active">中文</a>
+                </div>
+                <button class="nav-cta">加入 Beta</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Navigation -->
+    <nav class="product-nav">
+        <a href="#overview">产品概览</a>
+        <a href="#features">功能特色</a>
+        <a href="#workflow">使用流程</a>
+        <a href="#use-cases">应用场景</a>
+        <a href="#pricing">定价方案</a>
+        <a href="#cta">立即体验</a>
+    </nav>
+
+    <!-- Product Hero -->
+    <section class="product-hero" id="overview">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <div class="hero-tagline">🔍 Mira's Vibe 产品一</div>
+                <h1 class="hero-title">
+                    <span class="gradient-text">AI Market Research</span>
+                </h1>
+                <p class="hero-subtitle" style="font-size: 1.4rem;">
+                    <strong>替代传统调研公司，自动生成市场洞察</strong><br>
+                    让 AI 为您完成从数据收集到报告生成的全流程市场研究
+                </p>
+                <div class="hero-cta">
+                    <button class="cta-primary">
+                        <i class="fas fa-rocket"></i>
+                        免费试用
+                    </button>
+                    <button class="cta-secondary">
+                        <i class="fas fa-play"></i>
+                        观看演示
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">AI 驱动的智能市场研究</h2>
+            
+            <div class="feature-showcase">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                    <div>
+                        <h3 style="color: #9333ea; margin-bottom: 1rem;">📊 输入简单 Brief</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; color: #d1d5db;">• 行业类型</li>
+                            <li style="padding: 0.5rem 0; color: #d1d5db;">• 目标客户群体</li>
+                            <li style="padding: 0.5rem 0; color: #d1d5db;">• 竞争对手列表</li>
+                            <li style="padding: 0.5rem 0; color: #d1d5db;">• 研究目标</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: #9333ea; margin-bottom: 1rem;">🤖 AI 自动输出</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; color: #d1d5db;">• 竞品分析（价格、功能、市场占比）</li>
+                            <li style="padding: 0.5rem 0; color: #d1d5db;">• 消费者趋势报告</li>
+                            <li style="padding: 0.5rem 0; color: #d1d5db;">• 市场预测（增长率、潜在需求）</li>
+                            <li style="padding: 0.5rem 0; color: #d1d5db;">• 一键导出 PDF / PPT</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="value-section" id="workflow">
+        <div class="container">
+            <h2 class="section-title">使用流程</h2>
+            
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div>
+                    <h3 style="color: #9333ea; margin-bottom: 0.5rem;">输入需求</h3>
+                    <p style="color: #d1d5db;">在 SaaS Dashboard 或 Slack 插件中输入简单的研究需求</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div>
+                    <h3 style="color: #9333ea; margin-bottom: 0.5rem;">AI 自动抓取数据</h3>
+                    <p style="color: #d1d5db;">AI 从社交媒体、评论、公开数据源等自动收集相关信息</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div>
+                    <h3 style="color: #9333ea; margin-bottom: 0.5rem;">生成结构化报告</h3>
+                    <p style="color: #d1d5db;">输出包含可视化图表的专业市场研究报告</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="features-section" id="use-cases">
+        <div class="container">
+            <h2 class="section-title">应用场景</h2>
+            
+            <div class="use-case">
+                <div class="use-case-title">
+                    <i class="fas fa-product-hunt"></i>
+                    新品上市前验证
+                </div>
+                <p style="color: #d1d5db;">快速了解市场需求、竞争情况和定位策略，降低新品失败风险</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-title">
+                    <i class="fas fa-chart-line"></i>
+                    投资人 Pitch Deck
+                </div>
+                <p style="color: #d1d5db;">准确估算市场规模、增长潜力，为融资提供数据支撑</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-title">
+                    <i class="fas fa-bullseye"></i>
+                    营销部门找 USP
+                </div>
+                <p style="color: #d1d5db;">识别独特卖点，制定差异化营销策略</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="why-section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">定价方案</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                <div class="pricing-card">
+                    <h3 style="color: #9333ea;">按报告付费</h3>
+                    <div class="price">$199 <span class="price-unit">/ 报告</span></div>
+                    <ul style="list-style: none; padding: 0; margin: 2rem 0;">
+                        <li style="padding: 0.5rem 0;">✅ 完整市场研究报告</li>
+                        <li style="padding: 0.5rem 0;">✅ 竞品深度分析</li>
+                        <li style="padding: 0.5rem 0;">✅ 消费者趋势洞察</li>
+                        <li style="padding: 0.5rem 0;">✅ PDF/PPT 导出</li>
+                        <li style="padding: 0.5rem 0;">✅ 48小时交付</li>
+                    </ul>
+                    <button class="cta-secondary" style="width: 100%;">选择此方案</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3 style="color: #9333ea;">订阅制</h3>
+                    <div class="price">$499 <span class="price-unit">/ 月</span></div>
+                    <ul style="list-style: none; padding: 0; margin: 2rem 0;">
+                        <li style="padding: 0.5rem 0;">✅ 每月 10 份报告</li>
+                        <li style="padding: 0.5rem 0;">✅ SaaS Dashboard</li>
+                        <li style="padding: 0.5rem 0;">✅ Slack 集成</li>
+                        <li style="padding: 0.5rem 0;">✅ 实时数据更新</li>
+                        <li style="padding: 0.5rem 0;">✅ 优先支持</li>
+                        <li style="padding: 0.5rem 0;">✅ API 接口</li>
+                    </ul>
+                    <button class="cta-primary" style="width: 100%;">立即订阅</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="final-cta" id="cta">
+        <div class="container">
+            <h2 class="cta-title">开始您的 AI 市场研究之旅</h2>
+            <p class="cta-subtitle">免费试用，感受 AI 驱动的市场洞察力量</p>
+            <div class="email-signup">
+                <input type="email" placeholder="输入您的邮箱，获取免费试用" class="email-input">
+                <button class="signup-btn">
+                    <i class="fas fa-rocket"></i>
+                    免费试用
+                </button>
+            </div>
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="ai-agent-sales.html" class="social-link" style="margin: 0 1rem;">
+                    <i class="fas fa-arrow-right"></i>
+                    查看 AI Sales Teams
+                </a>
+                <a href="ai-campaign-automation.html" class="social-link" style="margin: 0 1rem;">
+                    <i class="fas fa-arrow-right"></i>
+                    查看 Campaign Automation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>AI Market Research</h4>
+                    <p>替代传统调研公司的 AI 解决方案</p>
+                    <a href="index-cn.html">← 返回首页</a>
+                </div>
+                <div class="footer-section">
+                    <h4>其他产品</h4>
+                    <a href="ai-agent-sales.html">AI Agent Sales Teams</a>
+                    <a href="ai-campaign-automation.html">AI Campaign Automation</a>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <a href="#">技术支持</a>
+                    <a href="#">合作伙伴</a>
+                    <a href="#">职业机会</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Smooth scrolling for product navigation
+        document.querySelectorAll('.product-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Update active state
+                    document.querySelectorAll('.product-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Update active navigation on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['overview', 'features', 'workflow', 'use-cases', 'pricing', 'cta'];
+            const scrollPosition = window.scrollY + 200;
+            
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                const navLink = document.querySelector(`.product-nav a[href="#${sectionId}"]`);
+                
+                if (section && navLink) {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        document.querySelectorAll('.product-nav a').forEach(a => a.classList.remove('active'));
+                        navLink.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
