@@ -317,18 +317,18 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Features Section */
-.features-section {
+/* Products Section */
+.products-section {
     padding: 8rem 0;
 }
 
-.features-grid {
+.products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 3rem;
 }
 
-.feature-card {
+.product-card {
     position: relative;
     background: rgba(20, 20, 30, 0.9);
     border: 1px solid rgba(147, 51, 234, 0.3);
@@ -338,12 +338,12 @@ body {
     overflow: hidden;
 }
 
-.feature-card:hover {
+.product-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 25px 50px rgba(147, 51, 234, 0.3);
 }
 
-.feature-glow {
+.product-glow {
     position: absolute;
     top: -50%;
     left: -50%;
@@ -354,34 +354,34 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.feature-card:hover .feature-glow {
+.product-card:hover .product-glow {
     opacity: 1;
 }
 
-.feature-icon {
+.product-icon {
     font-size: 3rem;
     margin-bottom: 1.5rem;
 }
 
-.feature-card h3 {
+.product-card h3 {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     color: #9333ea;
 }
 
-.feature-card ul {
+.product-card ul {
     list-style: none;
 }
 
-.feature-card li {
+.product-card li {
     padding: 0.5rem 0;
     color: #d1d5db;
     position: relative;
     padding-left: 1.5rem;
 }
 
-.feature-card li:before {
+.product-card li:before {
     content: "→";
     position: absolute;
     left: 0;
@@ -389,7 +389,7 @@ body {
     font-weight: bold;
 }
 
-.feature-link {
+.product-link {
     display: inline-block;
     color: #9333ea;
     text-decoration: none;
@@ -402,19 +402,19 @@ body {
     z-index: 2;
 }
 
-.feature-link:hover {
+.product-link:hover {
     background: #9333ea;
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(147, 51, 234, 0.3);
 }
 
-.feature-link i {
+.product-link i {
     margin-left: 0.5rem;
     transition: transform 0.3s ease;
 }
 
-.feature-link:hover i {
+.product-link:hover i {
     transform: translateX(5px);
 }
 
