@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Market Research - Mira's Vibe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="https://mirainthehub.github.io/miras-vibe-website/index-cn.html" class="flex items-center text-violet-600 hover:text-violet-700 transition-colors">
+                <i class="fas fa-arrow-left mr-2"></i>
+                返回首页
+            </a>
+            <h1 class="text-xl font-semibold text-gray-900">AI Market Research</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Input Form -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">市场研究配置</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">行业</label>
+                    <input type="text" id="industry" placeholder="例如：护肤品" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">目标地区</label>
+                    <input type="text" id="region" placeholder="例如：中国一线城市" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">竞争对手</label>
+                    <input type="text" id="competitors" placeholder="例如：SK-II, 兰蔻, 雅诗兰黛" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-violet-500 focus:border-violet-500">
+                </div>
+            </div>
+            <button onclick="generateReport()" class="mt-6 bg-violet-600 text-white px-6 py-3 rounded-md hover:bg-violet-700 transition-colors font-medium">
+                <i class="fas fa-chart-bar mr-2"></i>生成报告
+            </button>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="hidden text-center py-8">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-violet-600"></div>
+            <p class="mt-2 text-gray-600">正在分析市场数据...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="hidden">
+            <!-- Executive Summary -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">执行摘要</h3>
+                <p class="text-gray-700 leading-relaxed">护肤品市场在中国一线城市呈现强劲增长态势，年增长率达15.2%。消费者对高端护肤产品需求持续上升，特别是抗衰老和保湿功效产品。市场总规模约280亿人民币，主要由国际品牌主导，但本土品牌正快速崛起。</p>
+            </div>
+
+            <!-- Metrics Cards -->
+            <div class="grid md:grid-cols-3 gap-6 mb-6">
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">15.2%</div>
+                    <div class="text-gray-700">市场增长率</div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">¥280B</div>
+                    <div class="text-gray-700">市场规模 (TAM)</div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">¥12.5</div>
+                    <div class="text-gray-700">平均获客成本</div>
+                </div>
+            </div>
+
+            <!-- Competitor Table -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">竞争对手分析</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="text-left py-3 px-4">品牌</th>
+                                <th class="text-left py-3 px-4">价格段</th>
+                                <th class="text-left py-3 px-4">核心优势</th>
+                                <th class="text-left py-3 px-4">市场份额</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="py-3 px-4 font-medium">SK-II</td>
+                                <td class="py-3 px-4">高端</td>
+                                <td class="py-3 px-4">Pitera专利成分</td>
+                                <td class="py-3 px-4">18%</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 px-4 font-medium">兰蔻</td>
+                                <td class="py-3 px-4">高端</td>
+                                <td class="py-3 px-4">抗衰老科技</td>
+                                <td class="py-3 px-4">15%</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 font-medium">雅诗兰黛</td>
+                                <td class="py-3 px-4">高端</td>
+                                <td class="py-3 px-4">小棕瓶精华</td>
+                                <td class="py-3 px-4">12%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Export Button -->
+            <div class="text-center">
+                <button class="bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 transition-colors font-medium">
+                    <i class="fas fa-download mr-2"></i>导出 PDF (打印)
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function generateReport() {
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            
+            loading.classList.remove('hidden');
+            results.classList.add('hidden');
+            
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                results.classList.remove('hidden');
+                // fetch('/api/market-research', { method: 'POST', body: JSON.stringify({...}) })
+            }, 800);
+        }
+    </script>
+</body>
+</html>
