@@ -3,17 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Agent Sales Teams - Mira's Vibe 🟣</title>
+    <title>AI Agent Sales Teams - 咪啦智域</title>
+    <meta name="description" content="Virtual sales team (SDR + AE) automation - 24/7 automated sales process from prospecting to closing" />
+    <meta property="og:title" content="AI Agent Sales Teams - 咪啦智域" />
+    <meta property="og:description" content="Virtual sales team (SDR + AE) automation - 24/7 automated sales process from prospecting to closing" />
+    <link rel="canonical" href="https://mirainthehub.github.io/miras-vibe-website/ai-agent-sales-en.html" />
+    <link rel="alternate" href="https://mirainthehub.github.io/miras-vibe-website/ai-agent-sales.html" hreflang="zh-Hans" />
+    <link rel="alternate" href="https://mirainthehub.github.io/miras-vibe-website/ai-agent-sales-en.html" hreflang="en" />
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .product-hero {
+            padding: 12rem 0 8rem;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(192, 132, 252, 0.1) 100%);
+        }
+        
+        .product-nav {
+            position: fixed;
+            top: 80px;
+            left: 2rem;
+            background: rgba(20, 20, 30, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 15px;
+            padding: 1rem;
+            z-index: 100;
+        }
+        
+        .product-nav a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .product-nav a:hover,
+        .product-nav a.active {
+            color: #9333ea;
+        }
+        
+        .agent-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .agent-card {
+            background: rgba(20, 20, 30, 0.8);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .agent-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(147, 51, 234, 0.6);
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.2);
+        }
+        
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .agent-card:hover::before {
+            opacity: 1;
+        }
+        
+        .agent-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .agent-title {
+            color: #9333ea;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .agent-description {
+            color: #d1d5db;
+            margin-bottom: 1.5rem;
+        }
+        
+        .agent-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .agent-features li {
+            padding: 0.5rem 0;
+            color: #d1d5db;
+            border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+        }
+        
+        .agent-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-card {
+            background: rgba(20, 20, 30, 0.8);
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            border-color: rgba(147, 51, 234, 0.8);
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.featured {
+            border-color: #9333ea;
+            background: rgba(147, 51, 234, 0.1);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'Recommended';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #9333ea;
+            margin: 1rem 0;
+        }
+        
+        .price-unit {
+            font-size: 1rem;
+            color: #9ca3af;
+            font-weight: 400;
+        }
+        
+        .use-case {
+            background: rgba(147, 51, 234, 0.05);
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .use-case-title {
+            color: #9333ea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .product-nav {
+                display: none;
+            }
+            
+            .agent-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- EN LINKS FIXED: 2025-08-26 -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index-en.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
-                    <span class="logo-text">Mira's Vibe</span>
+                    <span class="logo-text">咪啦智域</span>
                     <span class="logo-emoji">🟣</span>
                 </a>
             </div>
@@ -25,33 +212,281 @@
                     <a href="ai-agent-sales-en.html" class="lang-link active">EN</a>
                     <a href="ai-agent-sales.html" class="lang-link">中文</a>
                 </div>
-                <button class="nav-cta">Join Beta</button>
+                <a href="https://mirainthehub.github.io/miras-vibe-website/promotion-intake.html" class="nav-cta">Free Trial</a>
             </div>
         </div>
     </nav>
 
-    <section style="padding: 12rem 0 8rem; text-align: center;">
+    <!-- Product Navigation -->
+    <nav class="product-nav">
+        <a href="#overview">Overview</a>
+        <a href="#agents">AI Sales Team</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#use-cases">Use Cases</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#cta">Get Started</a>
+    </nav>
+
+    <!-- Product Hero -->
+    <section class="product-hero" id="overview">
         <div class="container">
-            <h1 class="hero-title">
-                <span class="gradient-text">AI Agent Sales Teams</span>
-            </h1>
-            <p class="hero-subtitle" style="font-size: 1.4rem; max-width: 600px; margin: 0 auto;">
-                <strong>Virtual sales teams (SDR + AE) that automatically prospect customers</strong><br>
-                Complete English version coming soon...
-            </p>
-            <div style="margin-top: 3rem;">
-                <a href="ai-agent-sales.html" class="cta-secondary">
-                    <i class="fas fa-language"></i>
-                    View Chinese Version
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <div class="hero-tagline">🤖 咪啦智域 Product Two</div>
+                <h1 class="hero-title">
+                    <span class="gradient-text">AI Agent Sales Teams</span>
+                </h1>
+                <p class="hero-subtitle" style="font-size: 1.4rem;">
+                    <strong>Virtual sales team (SDR + AE) automation</strong><br>
+                    24/7 uninterrupted AI sales team for complete automation from prospecting to closing
+                </p>
+                <div class="hero-cta">
+                    <a href="https://mirainthehub.github.io/miras-vibe-website/promotion-intake.html" class="cta-primary">
+                        <i class="fas fa-rocket"></i>
+                        Free Trial
+                    </a>
+                    <a href="#demo" class="cta-secondary">
+                        <i class="fas fa-play"></i>
+                        Watch Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents -->
+    <section class="features-section" id="agents">
+        <div class="container">
+            <h2 class="section-title">Three AI Sales Agents</h2>
+            
+            <div class="agent-showcase">
+                <div class="agent-card">
+                    <span class="agent-icon">🕵️</span>
+                    <h3 class="agent-title">Scout Agent</h3>
+                    <p class="agent-description">Professional prospecting specialist</p>
+                    <ul class="agent-features">
+                        <li>LinkedIn prospect search</li>
+                        <li>Enterprise database mining</li>
+                        <li>Customer profile matching</li>
+                        <li>Contact information collection</li>
+                        <li>Lead quality scoring</li>
+                    </ul>
+                </div>
+                
+                <div class="agent-card">
+                    <span class="agent-icon">📧</span>
+                    <h3 class="agent-title">Outreach Agent</h3>
+                    <p class="agent-description">Smart communication specialist</p>
+                    <ul class="agent-features">
+                        <li>Personalized email sequences</li>
+                        <li>LinkedIn connection requests</li>
+                        <li>Follow-up automation</li>
+                        <li>Response tracking & analysis</li>
+                        <li>A/B testing optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="agent-card">
+                    <span class="agent-icon">🤝</span>
+                    <h3 class="agent-title">Closer Agent</h3>
+                    <p class="agent-description">Deal closing expert</p>
+                    <ul class="agent-features">
+                        <li>Meeting scheduling</li>
+                        <li>Proposal generation</li>
+                        <li>Objection handling</li>
+                        <li>Contract negotiation</li>
+                        <li>Pipeline management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="features-section" id="use-cases">
+        <div class="container">
+            <h2 class="section-title">Use Cases</h2>
+            
+            <div class="use-case">
+                <div class="use-case-title">
+                    <i class="fas fa-building"></i>
+                    B2B SaaS Companies
+                </div>
+                <p style="color: #d1d5db;">Scale outbound sales without hiring expensive sales reps, perfect for early-stage startups</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-title">
+                    <i class="fas fa-handshake"></i>
+                    Service Agencies
+                </div>
+                <p style="color: #d1d5db;">Continuously prospect for new clients while focusing on service delivery</p>
+            </div>
+            
+            <div class="use-case">
+                <div class="use-case-title">
+                    <i class="fas fa-chart-line"></i>
+                    Sales Team Enhancement
+                </div>
+                <p style="color: #d1d5db;">Augment existing sales teams with AI agents to handle lead generation and qualification</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <h2 class="section-title">Demo</h2>
+            <div class="demo-container">
+                <div class="demo-input">
+                    <h3>Target Profile</h3>
+                    <div class="demo-box">
+                        <p>"SaaS companies, 50-500 employees"</p>
+                    </div>
+                </div>
+                <div class="demo-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="demo-output">
+                    <h3>AI Team Output</h3>
+                    <div class="demo-box">
+                        <div class="output-item">🔍 200+ prospects found</div>
+                        <div class="output-item">📧 50 emails sent</div>
+                        <div class="output-item">📅 5 meetings booked</div>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-animation">
+                <div class="scanning-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="why-section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Pricing Plans</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                <div class="pricing-card">
+                    <h3 style="color: #9333ea;">Starter</h3>
+                    <div class="price">$299 <span class="price-unit">/ month</span></div>
+                    <ul style="list-style: none; padding: 0; margin: 2rem 0;">
+                        <li style="padding: 0.5rem 0;">✅ 1 AI Agent (Scout)</li>
+                        <li style="padding: 0.5rem 0;">✅ 100 prospects/month</li>
+                        <li style="padding: 0.5rem 0;">✅ Basic email templates</li>
+                        <li style="padding: 0.5rem 0;">✅ Dashboard access</li>
+                        <li style="padding: 0.5rem 0;">✅ Email support</li>
+                    </ul>
+                    <a href="https://mirainthehub.github.io/miras-vibe-website/promotion-intake.html" class="cta-secondary" style="width: 100%; display: inline-block; text-align: center; text-decoration: none;">Free Trial</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3 style="color: #9333ea;">Professional</h3>
+                    <div class="price">$799 <span class="price-unit">/ month</span></div>
+                    <ul style="list-style: none; padding: 0; margin: 2rem 0;">
+                        <li style="padding: 0.5rem 0;">✅ 3 AI Agents (Scout + Outreach + Closer)</li>
+                        <li style="padding: 0.5rem 0;">✅ 500 prospects/month</li>
+                        <li style="padding: 0.5rem 0;">✅ Personalized sequences</li>
+                        <li style="padding: 0.5rem 0;">✅ CRM integration</li>
+                        <li style="padding: 0.5rem 0;">✅ Priority support</li>
+                        <li style="padding: 0.5rem 0;">✅ Custom training</li>
+                    </ul>
+                    <a href="https://mirainthehub.github.io/miras-vibe-website/promotion-intake.html" class="cta-primary" style="width: 100%; display: inline-block; text-align: center; text-decoration: none;">Free Trial</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="final-cta" id="cta">
+        <div class="container">
+            <h2 class="cta-title">Build Your AI Sales Team Today</h2>
+            <p class="cta-subtitle">Experience the power of 24/7 automated sales processes</p>
+            <div class="email-signup">
+                <input type="email" placeholder="Enter your email for free trial" class="email-input">
+                <a href="https://mirainthehub.github.io/miras-vibe-website/promotion-intake.html" class="signup-btn">
+                    <i class="fas fa-rocket"></i>
+                    Free Trial
                 </a>
-                <a href="index-en.html" class="cta-primary" style="margin-left: 1rem;">
-                    <i class="fas fa-home"></i>
-                    Back to Home
+            </div>
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="ai-market-research-en.html" class="social-link" style="margin: 0 1rem;">
+                    <i class="fas fa-arrow-left"></i>
+                    View Market Research
+                </a>
+                <a href="ai-campaign-automation-en.html" class="social-link" style="margin: 0 1rem;">
+                    <i class="fas fa-arrow-right"></i>
+                    View Campaign Automation
                 </a>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>AI Agent Sales Teams</h4>
+                    <p>24/7 virtual sales team automation</p>
+                    <a href="index-en.html">← Back to Home</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Other Products</h4>
+                    <a href="ai-market-research-en.html">AI Market Research</a>
+                    <a href="ai-campaign-automation-en.html">AI Campaign Automation</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <a href="#">Technical Support</a>
+                    <a href="#">Partners</a>
+                    <a href="#">Careers</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
+    <script>
+        // Smooth scrolling for product navigation
+        document.querySelectorAll('.product-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Update active state
+                    document.querySelectorAll('.product-nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Update active navigation on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['overview', 'agents', 'workflow', 'use-cases', 'pricing', 'cta'];
+            const scrollPosition = window.scrollY + 200;
+            
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                const navLink = document.querySelector(`.product-nav a[href="#${sectionId}"]`);
+                
+                if (section && navLink) {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        document.querySelectorAll('.product-nav a').forEach(a => a.classList.remove('active'));
+                        navLink.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
