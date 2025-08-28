@@ -67,10 +67,10 @@
           <label class="block">
             <span class="required" data-i18n="primary_goals">核心目标 / Primary goals</span>
             <select name="goals.primary" multiple class="mt-1 w-full border rounded px-3 py-2" required>
-              <option value="brand" data-i18n="g_brand">提升品牌曝光 / Brand exposure</option>
-              <option value="conversion" data-i18n="g_conversion">增加销售转化 / Sales conversion</option>
-              <option value="cost" data-i18n="g_cost">降低营销成本 / Reduce cost</option>
-              <option value="new_market" data-i18n="g_new">进入新市场 / New market</option>
+              <option value="brand">提升品牌曝光 / Brand exposure</option>
+              <option value="conversion">增加销售转化 / Sales conversion</option>
+              <option value="cost">降低营销成本 / Reduce cost</option>
+              <option value="new_market">进入新市场 / New market</option>
             </select>
             <p class="text-xs text-gray-500 mt-1" data-i18n="multi_hint">按住 Ctrl/Cmd 可多选 · Hold Ctrl/Cmd to multi-select</p>
           </label>
@@ -266,13 +266,67 @@
       },
       en: {
         purpose: 'This intake configures AI Market Research, AI Agent Sales, and AI Campaign Automation.',
-        s1_t: 'Company & Industry', company_name: 'Company name', industry: 'Industry', target_market:'Target market (regions/audiences)', competitors:'Key competitors',
-        s2_t: 'Goals & Pain Points', primary_goals:'Primary goals', g_brand:'Brand exposure', g_conversion:'Sales conversion', g_cost:'Reduce cost', g_new:'New market', multi_hint:'Hold Ctrl/Cmd to multi-select', pain_points:'Biggest challenges', ai_expectations:'Expected AI outcomes',
-        s3_t: 'Market Research', research_focus:'Focus', r_trends:'Trends', r_consumer:'Consumer', r_comp:'Competitors', r_opp:'Opportunities', output_format:'Output format', o_pdf:'PDF', o_dash:'Dashboard', o_api:'API',
-        s4_t: 'Sales & Leads', team_structure:'Team structure', ts_none:'None', ts_sdr:'SDR only', ts_ae:'AE only', ts_both:'SDR + AE', leads_pm:'Leads per month', target_cr:'Target CR (%)', crm:'CRM system', sales_tone:'Sales tone', tone_formal:'Formal', tone_friendly:'Friendly', tone_direct:'Direct',
-        s5_t: 'Marketing & Budget', channels:'Channels in use', other:'Others', budget_m:'Monthly budget (USD)', ai_support:'AI support needs',
-        s6_t: 'Brand Assets', style_guide:'Style guide available?', yes:'Yes', no:'No', materials:'Existing creatives to learn from', brand_tone:'Brand tone to emulate',
-        s7_t: 'KPIs & Timeline', kpis:'KPIs', timeline:'Timeline', prev:'Prev', next:'Next', save:'Save draft', submit:'Submit'
+        s1_t: 'Company & Industry', 
+        company_name: 'Company name', 
+        industry: 'Industry', 
+        target_market:'Target market (regions/audiences)', 
+        competitors:'Key competitors',
+        
+        s2_t: 'Goals & Pain Points', 
+        primary_goals:'Primary goals', 
+        g_brand:'Brand exposure', 
+        g_conversion:'Sales conversion', 
+        g_cost:'Reduce cost', 
+        g_new:'New market', 
+        multi_hint:'Hold Ctrl/Cmd to multi-select', 
+        pain_points:'Biggest challenges', 
+        ai_expectations:'Expected AI outcomes',
+        
+        s3_t: 'Market Research', 
+        research_focus:'Focus', 
+        r_trends:'Trends', 
+        r_consumer:'Consumer', 
+        r_comp:'Competitors', 
+        r_opp:'Opportunities', 
+        output_format:'Output format', 
+        o_pdf:'PDF', 
+        o_dash:'Dashboard', 
+        o_api:'API',
+        
+        s4_t: 'Sales & Leads', 
+        team_structure:'Team structure', 
+        ts_none:'None', 
+        ts_sdr:'SDR only', 
+        ts_ae:'AE only', 
+        ts_both:'SDR + AE', 
+        leads_pm:'Leads per month', 
+        target_cr:'Target CR (%)', 
+        crm:'CRM system', 
+        sales_tone:'Sales tone', 
+        tone_formal:'Formal', 
+        tone_friendly:'Friendly', 
+        tone_direct:'Direct',
+        
+        s5_t: 'Marketing & Budget', 
+        channels:'Channels in use', 
+        other:'Others', 
+        budget_m:'Monthly budget (USD)', 
+        ai_support:'AI support needs',
+        
+        s6_t: 'Brand Assets', 
+        style_guide:'Style guide available?', 
+        yes:'Yes', 
+        no:'No', 
+        materials:'Existing creatives to learn from', 
+        brand_tone:'Brand tone to emulate',
+        
+        s7_t: 'KPIs & Timeline', 
+        kpis:'KPIs', 
+        timeline:'Timeline', 
+        prev:'Prev', 
+        next:'Next', 
+        save:'Save draft', 
+        submit:'Submit'
       }
     };
 
@@ -298,10 +352,124 @@
 
     function setLang(l) {
       const dict = I18N[l] || I18N.zh;
+      
+      // Translate elements with data-i18n attributes
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[key]) el.textContent = dict[key];
       });
+      
+      // Translate select options based on language
+      if (l === 'en') {
+        // Goals section
+        const goalOptions = document.querySelectorAll('select[name="goals.primary"] option');
+        if (goalOptions.length >= 4) {
+          goalOptions[0].textContent = 'Brand exposure';
+          goalOptions[1].textContent = 'Sales conversion';
+          goalOptions[2].textContent = 'Reduce cost';
+          goalOptions[3].textContent = 'New market';
+        }
+        
+        // Research focus section
+        const researchOptions = document.querySelectorAll('select[name="research.focus"] option');
+        if (researchOptions.length >= 4) {
+          researchOptions[0].textContent = 'Trends';
+          researchOptions[1].textContent = 'Consumer';
+          researchOptions[2].textContent = 'Competitors';
+          researchOptions[3].textContent = 'Opportunities';
+        }
+        
+        // Output format section
+        const outputOptions = document.querySelectorAll('select[name="research.output"] option');
+        if (outputOptions.length >= 3) {
+          outputOptions[0].textContent = 'PDF';
+          outputOptions[1].textContent = 'Dashboard';
+          outputOptions[2].textContent = 'API';
+        }
+        
+        // Team structure section
+        const teamOptions = document.querySelectorAll('select[name="sales.structure"] option');
+        if (teamOptions.length >= 4) {
+          teamOptions[0].textContent = 'None';
+          teamOptions[1].textContent = 'SDR only';
+          teamOptions[2].textContent = 'AE only';
+          teamOptions[3].textContent = 'SDR + AE';
+        }
+        
+        // Sales tone section
+        const toneOptions = document.querySelectorAll('select[name="sales.tone"] option');
+        if (toneOptions.length >= 3) {
+          toneOptions[0].textContent = 'Formal';
+          toneOptions[1].textContent = 'Friendly';
+          toneOptions[2].textContent = 'Direct';
+        }
+        
+        // Marketing channels section
+        const channelOptions = document.querySelectorAll('select[name="mkt.channels"] option');
+        if (channelOptions.length >= 7) {
+          channelOptions[6].textContent = 'Others'; // Only translate "其他 / Others"
+        }
+        
+        // AI support section
+        const aiSupportOptions = document.querySelectorAll('select[name="mkt.ai_support"] option');
+        if (aiSupportOptions.length >= 4) {
+          aiSupportOptions[0].textContent = 'Copywriting';
+          aiSupportOptions[1].textContent = 'Video scripts';
+          aiSupportOptions[2].textContent = 'Multichannel';
+          aiSupportOptions[3].textContent = 'ROI optimization';
+        }
+        
+        // Style guide section
+        const styleOptions = document.querySelectorAll('select[name="brand.style_guide"] option');
+        if (styleOptions.length >= 2) {
+          styleOptions[0].textContent = 'Yes';
+          styleOptions[1].textContent = 'No';
+        }
+        
+        // KPIs section
+        const kpiOptions = document.querySelectorAll('select[name="success.kpi"] option');
+        if (kpiOptions.length >= 4) {
+          kpiOptions[0].textContent = 'Cost reduction';
+          kpiOptions[1].textContent = 'Conversion rate';
+          kpiOptions[2].textContent = 'CTR';
+          kpiOptions[3].textContent = 'Market entry';
+        }
+        
+        // Timeline section
+        const timelineOptions = document.querySelectorAll('select[name="success.timeline"] option');
+        if (timelineOptions.length >= 3) {
+          timelineOptions[0].textContent = '1–3 months (pilot)';
+          timelineOptions[1].textContent = '3–6 months';
+          timelineOptions[2].textContent = '6–12 months';
+        }
+      } else {
+        // Reset to Chinese/bilingual
+        const goalOptions = document.querySelectorAll('select[name="goals.primary"] option');
+        if (goalOptions.length >= 4) {
+          goalOptions[0].textContent = '提升品牌曝光 / Brand exposure';
+          goalOptions[1].textContent = '增加销售转化 / Sales conversion';
+          goalOptions[2].textContent = '降低营销成本 / Reduce cost';
+          goalOptions[3].textContent = '进入新市场 / New market';
+        }
+        
+        // Continue with Chinese versions for other fields...
+        const researchOptions = document.querySelectorAll('select[name="research.focus"] option');
+        if (researchOptions.length >= 4) {
+          researchOptions[0].textContent = '行业趋势 / Trends';
+          researchOptions[1].textContent = '消费者偏好 / Consumer';
+          researchOptions[2].textContent = '竞品动态 / Competitors';
+          researchOptions[3].textContent = '机会点 / Opportunities';
+        }
+        
+        const outputOptions = document.querySelectorAll('select[name="research.output"] option');
+        if (outputOptions.length >= 3) {
+          outputOptions[0].textContent = 'PDF 报告 / PDF';
+          outputOptions[1].textContent = '在线仪表盘 / Dashboard';
+          outputOptions[2].textContent = 'API 数据接口 / API';
+        }
+        
+        // Add other Chinese translations as needed...
+      }
     }
 
     // Save/load draft to localStorage
@@ -396,8 +564,42 @@
       URL.revokeObjectURL(url);
     }
 
+    // Custom validation for current step
+    function validateCurrentStep() {
+      const currentStep = steps[current];
+      const requiredFields = currentStep.querySelectorAll('[required]');
+      let valid = true;
+      
+      for (const field of requiredFields) {
+        if (field.type === 'select-multiple') {
+          if (field.selectedOptions.length === 0) {
+            field.setCustomValidity('Please select at least one option');
+            valid = false;
+          } else {
+            field.setCustomValidity('');
+          }
+        } else if (!field.value.trim()) {
+          valid = false;
+        }
+      }
+      
+      return valid && currentStep.querySelectorAll('input:invalid, select:invalid, textarea:invalid').length === 0;
+    }
+
     // Events
-    nextBtn.addEventListener('click', () => { if (form.reportValidity()) updateStep(+1); });
+    nextBtn.addEventListener('click', () => { 
+      if (validateCurrentStep()) {
+        updateStep(+1); 
+      } else {
+        // Show validation errors for current step only
+        const currentStep = steps[current];
+        const invalidFields = currentStep.querySelectorAll('input:invalid, select:invalid, textarea:invalid');
+        if (invalidFields.length > 0) {
+          invalidFields[0].focus();
+          invalidFields[0].reportValidity();
+        }
+      }
+    });
     prevBtn.addEventListener('click', () => updateStep(-1));
     submitBtn.addEventListener('click', (e) => submitData(e));
     form.addEventListener('submit', (e) => submitData(e));
