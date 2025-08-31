@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mira’s Vibe 客户调研表</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .step { display: none; }
+    .step.active { display: block; }
+    .required:after { content: ' *'; color: #ef4444; }
+  </style>
+  <!-- 纯中文版本：去除语言切换，默认使用中文内容 -->
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <div class="max-w-3xl mx-auto p-6">
+    <header class="mb-6">
+      <h1 class="text-2xl font-bold">Mira’s Vibe 客户调研表</h1>
+      <p class="text-sm text-gray-600 mt-2">填写约 5–8 分钟</p>
+      <div class="mt-4 text-xs text-gray-500">
+        <span class="font-semibold">用途：</span>
+        <span>本问卷用于快速对接 AI 市场调研、AI 销售自动化与 AI 营销活动模块。</span>
+      </div>
+    </header>
+
+    <div class="w-full bg-gray-200 rounded-full h-2.5 mb-6">
+      <div id="progress" class="bg-gray-800 h-2.5 rounded-full" style="width: 14%"></div>
+    </div>
+
+    <form id="intakeForm" class="bg-white shadow rounded-xl p-5 space-y-6">
+      <!-- STEP 1: Company -->
+      <section class="step active" data-step="1">
+        <h2 class="text-xl font-semibold mb-3">公司与行业</h2>
+        <div class="grid gap-4">
+          <label class="block">
+            <span class="required">公司全称</span>
+            <input name="company.name" class="mt-1 w-full border rounded px-3 py-2" required />
+          </label>
+          <label class="block">
+            <span class="required">所属行业</span>
+            <input name="company.industry" class="mt-1 w-full border rounded px-3 py-2" required />
+          </label>
+          <label class="block">
+            <span class="required">目标市场（地区/人群）</span>
+            <input name="company.target_market" class="mt-1 w-full border rounded px-3 py-2" placeholder="CN · EU · US · B2C · B2B · 18–35 岁" required />
+          </label>
+          <label class="block">
+            <span>主要竞争对手</span>
+            <input name="company.competitors" class="mt-1 w-full border rounded px-3 py-2" />
+          </label>
+        </div>
+      </section>
+
+      <!-- STEP 2: Goals & pain points -->
+      <section class="step" data-step="2">
+        <h2 class="text-xl font-semibold mb-3">业务目标与痛点</h2>
+        <div class="grid gap-4">
+          <label class="block">
+            <span class="required">核心目标</span>
+            <select name="goals.primary" multiple class="mt-1 w-full border rounded px-3 py-2" required>
+              <option value="brand">提升品牌曝光</option>
+              <option value="conversion">增加销售转化</option>
+              <option value="cost">降低营销成本</option>
+              <option value="new_market">进入新市场</option>
+            </select>
+            <p class="text-xs text-gray-500 mt-1">按住 Ctrl/Cmd 可多选</p>
+          </label>
+          <label class="block">
+            <span class="required">当前最大挑战</span>
+            <textarea name="goals.pain_points" class="mt-1 w-full border rounded px-3 py-2" rows="3" required placeholder="如：线索质量不稳、ROI 偏低、产研协同低效"></textarea>
+          </label>
+          <label class="block">
+            <span>希望通过 AI 达成的改进</span>
+            <textarea name="goals.ai_expectations" class="mt-1 w-full border rounded px-3 py-2" rows="2"></textarea>
+          </label>
+        </div>
+      </section>
+
+      <!-- STEP 3: Market research -->
+      <section class="step" data-step="3">
+        <h2 class="text-xl font-semibold mb-3">市场调研需求</h2>
+        <div class="grid gap-4">
+          <label class="block">
+            <span class="required">研究重点</span>
+            <select name="research.focus" multiple class="mt-1 w-full border rounded px-3 py-2" required>
+              <option value="trends">行业趋势</option>
+              <option value="consumer">消费者偏好</option>
+              <option value="competitors">竞品动态</option>
+              <option value="opportunities">机会点</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="required">期望输出形式</span>
+            <select name="research.output" multiple class="mt-1 w-full border rounded px-3 py-2" required>
+              <option value="pdf">PDF 报告</option>
+              <option value="dashboard">在线仪表盘</option>
+              <option value="api">API 数据接口</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <!-- STEP 4: Sales -->
+      <section class="step" data-step="4">
+        <h2 class="text-xl font-semibold mb-3">销售流程与线索管理</h2>
+        <div class="grid gap-4">
+          <label class="block">
+            <span class="required">团队结构</span>
+            <select name="sales.structure" class="mt-1 w-full border rounded px-3 py-2" required>
+              <option value="none">无</option>
+              <option value="sdr">仅 SDR</option>
+              <option value="ae">仅 AE</option>
+              <option value="sdr_ae">SDR + AE</option>
+            </select>
+          </label>
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="block">
+              <span class="required">月均线索量</span>
+              <input type="number" min="0" name="sales.leads_per_month" class="mt-1 w-full border rounded px-3 py-2" required />
+            </label>
+            <label class="block">
+              <span>目标转化率（%）</span>
+              <input type="number" min="0" max="100" step="0.1" name="sales.target_cr" class="mt-1 w-full border rounded px-3 py-2" />
+            </label>
+          </div>
+          <label class="block">
+            <span>CRM 系统</span>
+            <input name="sales.crm" class="mt-1 w-full border rounded px-3 py-2" placeholder="Salesforce / HubSpot / 自研 / None" />
+          </label>
+          <label class="block">
+            <span class="required">销售话术风格</span>
+            <select name="sales.tone" class="mt-1 w-full border rounded px-3 py-2" required>
+              <option value="formal">正式专业</option>
+              <option value="friendly">亲和温暖</option>
+              <option value="direct">直接高效</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <!-- STEP 5: Marketing -->
+      <section class="step" data-step="5">
+        <h2 class="text-xl font-semibold mb-3">营销渠道与预算</h2>
+        <div class="grid gap-4">
+          <label class="block">
+            <span class="required">使用中的渠道</span>
+            <select name="mkt.channels" multiple class="mt-1 w-full border rounded px-3 py-2" required>
+              <option value="google_ads">Google Ads</option>
+              <option value="linkedin">LinkedIn Ads</option>
+              <option value="tiktok">TikTok</option>
+              <option value="instagram">Instagram</option>
+              <option value="wechat">微信</option>
+              <option value="xiaohongshu">小红书</option>
+              <option value="other">其他</option>
+            </select>
+          </label>
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="block">
+              <span class="required">月预算（USD）</span>
+              <input type="number" min="0" step="100" name="mkt.budget_usd" class="mt-1 w-full border rounded px-3 py-2" required />
+            </label>
+            <label class="block">
+              <span>AI 支持需求</span>
+              <select name="mkt.ai_support" multiple class="mt-1 w-full border rounded px-3 py-2">
+                <option value="copy">广告文案</option>
+                <option value="video">视频脚本</option>
+                <option value="omni">多渠道整合</option>
+                <option value="roi">ROI 优化</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 6: Brand -->
+      <section class="step" data-step="6">
+        <h2 class="text-xl font-semibold mb-3">品牌与素材</h2>
+        <div class="grid gap-4">
+          <label class="block">
+            <span class="required">是否有品牌手册</span>
+            <select name="brand.style_guide" class="mt-1 w-full border rounded px-3 py-2" required>
+              <option value="yes">是</option>
+              <option value="no">否</option>
+            </select>
+          </label>
+          <label class="block">
+            <span>可供学习的素材</span>
+            <textarea name="brand.materials" class="mt-1 w-full border rounded px-3 py-2" rows="2" placeholder="官网/品牌手册/历史广告等链接"></textarea>
+          </label>
+          <label class="block">
+            <span>品牌语气</span>
+            <select name="brand.tone" class="mt-1 w-full border rounded px-3 py-2">
+              <option value="formal">正式专业</option>
+              <option value="friendly">亲和温暖</option>
+              <option value="direct">直接高效</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <!-- STEP 7: Success -->
+      <section class="step" data-step="7">
+        <h2 class="text-xl font-semibold mb-3">成功指标与周期</h2>
+        <div class="grid gap-4">
+          <label class="block">
+            <span class="required">关键指标</span>
+            <select name="success.kpi" multiple class="mt-1 w-full border rounded px-3 py-2" required>
+              <option value="cost">成本下降</option>
+              <option value="cr">转化率提升</option>
+              <option value="ctr">CTR 提升</option>
+              <option value="market">进入新市场</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="required">项目周期</span>
+            <select name="success.timeline" class="mt-1 w-full border rounded px-3 py-2" required>
+              <option value="1-3m">1–3 个月（试点）</option>
+              <option value="3-6m">3–6 个月（中期）</option>
+              <option value="6-12m">6–12 个月（长期）</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <!-- Nav buttons -->
+      <div class="flex items-center justify-between pt-2">
+        <button id="prevBtn" type="button" class="px-4 py-2 rounded-lg border" disabled>&larr; 上一步</button>
+        <div class="flex items-center gap-3">
+          <button id="saveDraft" type="button" class="px-4 py-2 rounded-lg border">保存草稿</button>
+          <button id="nextBtn" type="button" class="px-4 py-2 rounded-lg bg-gray-900 text-white">下一步 &rarr;</button>
+          <button id="submitBtn" type="submit" class="hidden px-4 py-2 rounded-lg bg-emerald-600 text-white">提交</button>
+        </div>
+      </div>
+    </form>
+
+    <div id="result" class="mt-6 hidden"></div>
+
+    <footer class="mt-10 text-xs text-gray-500">
+      <p>两种提交方式：1) Webhook（如 Formspree/自建后端）；2) 本地下载 JSON 归档（适用于 GitHub Pages 纯静态）。</p>
+      <p>在下方脚本中设置 <code>WEBHOOK_URL</code> 即可启用 Webhook。留空则下载 JSON。</p>
+    </footer>
+  </div>
+
+  <script>
+    const WEBHOOK_URL = 'https://formspree.io/f/mrbaglpn';
+    const SHARED_SECRET = '';
+
+    const form = document.getElementById('intakeForm');
+    const steps = Array.from(document.querySelectorAll('.step'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const progress = document.getElementById('progress');
+    const result = document.getElementById('result');
+
+    let current = 0;
+
+    function updateStep(dir = 0) {
+      current = Math.min(Math.max(0, current + dir), steps.length - 1);
+      steps.forEach((s, i) => s.classList.toggle('active', i === current));
+      prevBtn.disabled = current === 0;
+      nextBtn.classList.toggle('hidden', current === steps.length - 1);
+      submitBtn.classList.toggle('hidden', current !== steps.length - 1);
+      progress.style.width = Math.round(((current + 1) / steps.length) * 100) + '%';
+    }
+
+    function showMsg(msg, ok = true) {
+      result.className = `mt-6 p-3 rounded ${ok ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`;
+      result.textContent = msg;
+      result.classList.remove('hidden');
+    }
+
+    function formToJSON() {
+      const data = {};
+      new FormData(form).forEach((v, k) => {
+        if (data[k] !== undefined) {
+          if (!Array.isArray(data[k])) data[k] = [data[k]];
+          data[k].push(v);
+        } else {
+          data[k] = v;
+        }
+      });
+      return data;
+    }
+
+    function saveDraft() {
+      const draft = { ts: Date.now(), data: formToJSON() };
+      localStorage.setItem('mv_intake_draft', JSON.stringify(draft));
+      showMsg('草稿已保存（本地浏览器）。');
+      setTimeout(() => result.classList.add('hidden'), 1500);
+    }
+
+    function loadDraft() {
+      const raw = localStorage.getItem('mv_intake_draft');
+      if (!raw) return;
+      try {
+        const draft = JSON.parse(raw);
+        Object.entries(draft.data || {}).forEach(([k, v]) => {
+          const el = form.elements[k];
+          if (!el) return;
+          if (el instanceof RadioNodeList) {
+            if (Array.isArray(v)) v.forEach(val => selectOption(el, val));
+            else selectOption(el, v);
+          } else el.value = v;
+        });
+        showMsg('已加载本地草稿。');
+        setTimeout(() => result.classList.add('hidden'), 1500);
+      } catch {}
+    }
+
+    function selectOption(nodeList, value) {
+      Array.from(nodeList.options || []).forEach(opt => {
+        opt.selected = Array.isArray(value) ? value.includes(opt.value) : opt.value === value;
+      });
+    }
+
+    async function submitData(e) {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const payload = {
+        meta: { lang: 'zh', ts: new Date().toISOString(), site: location.href },
+        data: formToJSON(),
+        secret: SHARED_SECRET || undefined
+      };
+
+      if (WEBHOOK_URL) {
+        try {
+          const res = await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!res.ok) throw new Error(await res.text());
+          showMsg('提交成功，感谢配合！我们将尽快与您联系。');
+          localStorage.removeItem('mv_intake_draft');
+          form.reset();
+          current = 0; updateStep(0);
+          return;
+        } catch (err) {
+          console.error(err);
+          showMsg('提交失败：已为您下载离线副本，请手动发送给我们。', false);
+          downloadJSON(payload);
+          return;
+        }
+      }
+
+      downloadJSON(payload);
+      showMsg('已下载离线 JSON，您可通过邮件发送给我们。');
+      localStorage.removeItem('mv_intake_draft');
+      form.reset();
+      current = 0; updateStep(0);
+    }
+
+    function downloadJSON(obj) {
+      const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `miras-vibe-intake-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function validateCurrentStep() {
+      const currentStep = steps[current];
+      const requiredFields = currentStep.querySelectorAll('[required]');
+      let valid = true;
+      for (const field of requiredFields) {
+        if (field.type === 'select-multiple') {
+          if (field.selectedOptions.length === 0) {
+            field.setCustomValidity('请至少选择一项');
+            valid = false;
+          } else {
+            field.setCustomValidity('');
+          }
+        } else if (!field.value.trim()) {
+          valid = false;
+        }
+      }
+      return valid && currentStep.querySelectorAll('input:invalid, select:invalid, textarea:invalid').length === 0;
+    }
+
+    nextBtn.addEventListener('click', () => { 
+      if (validateCurrentStep()) updateStep(+1); 
+      else {
+        const currentStep = steps[current];
+        const invalid = currentStep.querySelectorAll('input:invalid, select:invalid, textarea:invalid');
+        if (invalid.length > 0) { invalid[0].focus(); invalid[0].reportValidity(); }
+      }
+    });
+    prevBtn.addEventListener('click', () => updateStep(-1));
+    submitBtn.addEventListener('click', (e) => submitData(e));
+    form.addEventListener('submit', (e) => submitData(e));
+    document.getElementById('saveDraft').addEventListener('click', saveDraft);
+
+    loadDraft();
+    updateStep(0);
+  </script>
+
+  <!--
+  部署说明：
+  - 该文件路径 /miras-vibe-website/promotion-intake-cn.html（GitHub Pages）。
+  - 如需启用 Webhook 提交，在顶部脚本设置 WEBHOOK_URL。留空会下载 JSON。
+  -->
+</body>
+</html>
+

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mira’s Vibe 客户调研表 / Client Intake</title>
+  <title>Mira’s Vibe Client Intake</title>
   <!-- TailwindCSS CDN for quick styling on GitHub Pages -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -16,18 +16,18 @@
 <body class="bg-gray-50 text-gray-900">
   <div class="max-w-3xl mx-auto p-6">
     <header class="mb-6">
-      <h1 class="text-2xl font-bold">Mira’s Vibe 客户调研表 / Client Intake</h1>
-      <p class="text-sm text-gray-600 mt-2">填写约 5–8 分钟 · Takes ~5–8 minutes</p>
-      <div class="mt-4 flex items-center gap-3">
-        <label class="text-sm">语言 / Language</label>
+      <h1 class="text-2xl font-bold">Mira’s Vibe Client Intake</h1>
+      <p class="text-sm text-gray-600 mt-2">Takes ~5–8 minutes</p>
+      <div class="mt-4 flex items-center gap-3 hidden">
+        <label class="text-sm">Language</label>
         <select id="lang" class="border rounded px-2 py-1">
           <option value="zh">中文</option>
-          <option value="en">English</option>
+          <option value="en" selected>English</option>
         </select>
       </div>
       <div class="mt-4 text-xs text-gray-500">
-        <span class="font-semibold">用途 / Purpose:</span>
-        <span data-i18n="purpose">本问卷用于快速对接 AI 市场调研、AI 销售自动化与 AI 营销活动模块。Your answers configure AI Market Research, AI Agent Sales, and AI Campaign Automation.</span>
+        <span class="font-semibold">Purpose:</span>
+        <span data-i18n="purpose">This intake configures AI Market Research, AI Agent Sales, and AI Campaign Automation.</span>
       </div>
     </header>
 
@@ -51,7 +51,7 @@
           </label>
           <label class="block">
             <span class="required" data-i18n="target_market">目标市场（地区/人群）/ Target market (regions/audiences)</span>
-            <input name="company.target_market" class="mt-1 w-full border rounded px-3 py-2" placeholder="CN · EU · US / B2C · B2B · Age 18–35" required />
+            <input name="company.target_market" class="mt-1 w-full border rounded px-3 py-2" placeholder="CN · EU · US · B2C · B2B · Age 18–35" required />
           </label>
           <label class="block">
             <span data-i18n="competitors">主要竞争对手 / Key competitors</span>
@@ -76,7 +76,7 @@
           </label>
           <label class="block">
             <span class="required" data-i18n="pain_points">当前最大挑战 / Biggest challenges</span>
-            <textarea name="goals.pain_points" class="mt-1 w-full border rounded px-3 py-2" rows="3" required placeholder="如：线索质量不稳、ROI 偏低、产研协同低效 / e.g., poor lead quality, low ROI, weak ops alignment"></textarea>
+            <textarea name="goals.pain_points" class="mt-1 w-full border rounded px-3 py-2" rows="3" required placeholder="e.g., poor lead quality, low ROI, weak ops alignment"></textarea>
           </label>
           <label class="block">
             <span data-i18n="ai_expectations">希望通过 AI 达成的改进 / Expected AI outcomes</span>
@@ -242,7 +242,7 @@
     <div id="result" class="mt-6 hidden"></div>
 
     <footer class="mt-10 text-xs text-gray-500">
-      <p>内置两种提交方式：1) Webhook（如 Formspree/自建后端）；2) 本地下载 JSON 归档（适用于 GitHub Pages 纯静态）。</p>
+      <p>Two submission options: 1) Webhook (e.g., Formspree or your backend); 2) Local JSON download (suitable for static GitHub Pages).</p>
       <p>Configure submission via <code>WEBHOOK_URL</code> below. If empty, a JSON file will be downloaded.</p>
     </footer>
   </div>
@@ -534,21 +534,21 @@
             body: JSON.stringify(payload)
           });
           if (!res.ok) throw new Error(await res.text());
-          showMsg('提交成功，感谢配合！我们将尽快与您联系。 / Submitted successfully. We will contact you soon.');
+          showMsg('Submitted successfully. We will contact you soon.');
           localStorage.removeItem('mv_intake_draft');
           form.reset();
           current = 0; updateStep(0);
           return;
         } catch (err) {
           console.error(err);
-          showMsg('提交失败：已为您下载离线副本，请手动发送给我们。 / Submit failed: a JSON copy has been downloaded for you to email us.', false);
+          showMsg('Submit failed: a JSON copy has been downloaded for you to email us.', false);
           downloadJSON(payload);
           return;
         }
       }
 
       downloadJSON(payload);
-      showMsg('已下载离线 JSON，您可通过邮件发送给我们。 / Downloaded JSON — please email it to us.');
+      showMsg('Downloaded JSON — please email it to us.');
       localStorage.removeItem('mv_intake_draft');
       form.reset();
       current = 0; updateStep(0);
@@ -619,4 +619,3 @@
   -->
 </body>
 </html>
-
